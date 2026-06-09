@@ -223,30 +223,7 @@ h1 { margin:18px 0 16px; font-size:clamp(42px,6vw,76px); line-height:.96; letter
 
 .standalone-copy { max-width:920px; margin:0 auto; }
 .download-note { margin:8px 0 0; color:var(--muted); font-size:13px; }
-.comments-card { margin:0 18px 18px; background:#fff; border:1px solid var(--line); border-radius:24px; padding:22px; }
-.comments-card h3 { margin:0 0 8px; font-size:21px; letter-spacing:-.02em; }
-.comments-card .comment-help { margin:0 0 16px; color:var(--muted); font-size:14px; }
-.comment-form { display:grid; grid-template-columns:220px 1fr auto; gap:10px; align-items:start; }
-.comment-form input { width:100%; border:1px solid var(--line); border-radius:16px; padding:12px 14px; font:inherit; color:var(--ink); background:#fbfcff; box-sizing:border-box; }
-.rich-comment-box { border:1px solid var(--line); border-radius:16px; background:#fbfcff; overflow:hidden; }
-.comment-toolbar { display:flex; gap:6px; align-items:center; flex-wrap:wrap; padding:8px; border-bottom:1px solid var(--line); background:#fff; }
-.comment-toolbar button, .comment-toolbar select { border:1px solid var(--line); background:#fff; border-radius:10px; min-height:32px; padding:6px 9px; color:var(--ink); font:inherit; font-size:13px; cursor:pointer; }
-.comment-toolbar button:hover, .comment-toolbar select:hover { border-color:#c7bdf4; background:#fbfaff; }
-.comment-toolbar .format-btn { font-weight:700; min-width:34px; }
-.comment-toolbar .italic-btn { font-style:italic; }
-.comment-editor { min-height:96px; padding:12px 14px; outline:none; color:var(--ink); font:inherit; line-height:1.55; background:#fbfcff; }
-.comment-editor:empty:before { content:attr(data-placeholder); color:#94a3b8; }
-.comment-editor ul { margin:8px 0 8px 20px; padding-left:16px; }
-.comment-actions { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 0; }
-.comment-list { display:grid; gap:10px; margin-top:16px; }
-.comment-item { border:1px solid var(--line); background:#fbfcff; border-radius:18px; padding:14px; }
-.comment-meta { display:flex; gap:8px; flex-wrap:wrap; align-items:center; color:var(--muted); font-size:12px; margin-bottom:7px; }
-.comment-meta strong { color:var(--ink); font-size:13px; }
-.comment-text { color:#334155; font-size:14px; line-height:1.55; }
-.comment-text p { margin:0 0 8px; }
-.comment-text ul { margin:6px 0 8px 22px; padding-left:16px; }
-.empty-comments { color:var(--muted); font-size:14px; padding:14px; border:1px dashed var(--line); border-radius:16px; background:#fbfcff; }
-@media (max-width: 900px) { .comment-form { grid-template-columns:1fr; } }
+
 
 
 /* Harmonized process-type colors v9 */
@@ -272,7 +249,7 @@ h1 { margin:18px 0 16px; font-size:clamp(42px,6vw,76px); line-height:.96; letter
 @media print {
   @page { size: A4 landscape; margin: 12mm; }
   body { background:white; color:#111827; }
-  .topbar, .sidebar, .toolbar-panel, .map-tools, .map-note, .footer, .home, .overview-panel, .btn, .comment-form, .comment-actions, .comment-help { display:none !important; }
+  .topbar, .sidebar, .toolbar-panel, .map-tools, .map-note, .footer, .home, .overview-panel, .btn { display:none !important; }
   #toolkitPage { display:block !important; }
   .container { width:100%; margin:0; }
   .toolkit-shell { display:block; padding:0; }
@@ -308,14 +285,13 @@ h1 { margin:18px 0 16px; font-size:clamp(42px,6vw,76px); line-height:.96; letter
 @media (max-width: 720px) { .reference-callout { grid-template-columns:1fr; } .process-type-card { grid-template-columns:1fr; } }
 
 @media print {
-  body.print-map-only .process-head, body.print-map-only .body-grid, body.print-map-only .comments-card { display:none !important; }
+  body.print-map-only .process-head, body.print-map-only .body-grid { display:none !important; }
   body.print-map-only .map-section { display:block !important; padding:0 !important; }
   body.print-map-only .map-header { display:block !important; margin:0 0 6mm !important; }
   body.print-map-only .map-header strong { font-size:18pt !important; }
   body.print-map-only .map-frame { height:auto !important; overflow:visible !important; border:0 !important; padding:0 !important; }
   body.print-map-only .map-img, body.print-map-only .map-img.fit { width:100% !important; max-width:100% !important; border:1px solid #ddd !important; box-shadow:none !important; border-radius:0 !important; }
   body.print-subprocess .body-grid { break-before:auto !important; }
-  body.print-subprocess .comments-card { display:none !important; }
 }
 
 
@@ -643,33 +619,7 @@ h1 { margin:18px 0 16px; font-size:clamp(42px,6vw,76px); line-height:.96; letter
 <section class="content-card management-process-card"><div class="card-label"><span class="process-type-dot management-dot">✓</span>Management processes</div><p id="management"></p></section>
 </aside>
 </section>
-<section class="comments-card" id="commentsSection">
-<h3>Comments on this map</h3>
-<p class="comment-help">Add comments or suggestions for this subprocess map. Comments are saved locally in this browser. Use Export comments to share them with the toolkit team.</p>
-<div class="comment-form">
-<input id="commentName" placeholder="Name or initials (optional)" type="text"/>
-<div class="rich-comment-box">
-  <div class="comment-toolbar" aria-label="Comment formatting toolbar">
-    <select id="commentFontSize" title="Font size">
-      <option value="3">Normal text</option>
-      <option value="2">Small text</option>
-      <option value="4">Large text</option>
-      <option value="5">Heading text</option>
-    </select>
-    <button class="format-btn" data-command="bold" type="button" title="Bold">B</button>
-    <button class="format-btn italic-btn" data-command="italic" type="button" title="Italic">I</button>
-    <button data-command="insertUnorderedList" type="button" title="Bullet list">• Bullets</button>
-  </div>
-  <div id="commentText" class="comment-editor" contenteditable="true" data-placeholder="Write a comment about this map..."></div>
-</div>
-<button class="btn small" id="addCommentBtn">Post comment</button>
-</div>
-<div class="comment-actions">
-<button class="btn secondary small" id="exportCommentsBtn">Export comments</button>
-<button class="btn secondary small" id="clearCommentsBtn">Clear comments for this map</button>
-</div>
-<div class="comment-list" id="commentList"></div>
-</section>
+
 </article>
 </main>
 </div>
@@ -732,109 +682,7 @@ function setupBpmnLink(p) {
   link.setAttribute('href', fileUrl);
   link.setAttribute('title', `Download the Bizagi Modeler BPM file for ${p.title}`);
 }
-function commentKey() { return `srs-map-comments-${activeId}`; }
-function getComments() {
-  try { return JSON.parse(localStorage.getItem(commentKey()) || '[]'); } catch(e) { return []; }
-}
-function saveComments(items) { localStorage.setItem(commentKey(), JSON.stringify(items)); }
-function escapeHtml(value) {
-  return String(value || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function sanitizeCommentHtml(value) {
-  const allowedTags = new Set(['B','I','STRONG','EM','UL','OL','LI','P','BR','DIV','SPAN','FONT']);
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = String(value || '');
-  wrapper.querySelectorAll('*').forEach(el => {
-    if (!allowedTags.has(el.tagName)) {
-      el.replaceWith(document.createTextNode(el.textContent || ''));
-      return;
-    }
-    [...el.attributes].forEach(attr => {
-      const name = attr.name.toLowerCase();
-      if (el.tagName === 'FONT' && name === 'size') return;
-      el.removeAttribute(attr.name);
-    });
-  });
-  return wrapper.innerHTML.trim();
-}
-function renderComments() {
-  const list = $('commentList');
-  if (!list) return;
-  const comments = getComments();
-  if (!comments.length) {
-    list.innerHTML = '<div class="empty-comments">No comments yet for this subprocess map.</div>';
-    return;
-  }
-  list.innerHTML = comments.map((c, i) => {
-    const body = c.html ? sanitizeCommentHtml(c.html) : escapeHtml(c.text || '');
-    return `<article class="comment-item">
-      <div class="comment-meta"><strong>${escapeHtml(c.name || 'Anonymous')}</strong><span>${escapeHtml(c.date)}</span><button class="btn secondary small" data-delete-comment="${i}" type="button">Delete</button></div>
-      <div class="comment-text">${body}</div>
-    </article>`;
-  }).join('');
-  document.querySelectorAll('[data-delete-comment]').forEach(btn => btn.onclick = () => {
-    const idx = Number(btn.dataset.deleteComment);
-    const updated = getComments().filter((_, i) => i !== idx);
-    saveComments(updated);
-    renderComments();
-  });
-}
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzKYMbvQatYZM6rNx27cwdSmqbnUq4CTb13MJ2EK-2R5dvEjdYSzKsWXhz8suXyRADT/exec';
-function sendCommentToSheet(item) {
-  fetch(SHEETS_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      reviewer: item.name || 'Anonymous',
-      processMap: item.processTitle,
-      comment: item.text,
-      version: 'v28'
-    })
-  }).catch(() => {});
-}
-function addComment() {
-  const editor = $('commentText');
-  const html = sanitizeCommentHtml(editor.innerHTML);
-  const text = editor.textContent.trim();
-  if (!text) { alert('Please write a comment first.'); return; }
-  const name = $('commentName').value.trim();
-  const p = processes.find(x => x.id === activeId) || processes[0];
-  const item = { processId: p.id, processTitle: p.title, name, html, text, date: new Date().toLocaleString() };
-  const comments = getComments();
-  comments.unshift(item);
-  saveComments(comments);
-  sendCommentToSheet(item);
-  editor.innerHTML = '';
-  renderComments();
-}
-function setupCommentFormatting() {
-  document.querySelectorAll('[data-command]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      $('commentText').focus();
-      document.execCommand(btn.dataset.command, false, null);
-    });
-  });
-  const size = $('commentFontSize');
-  if (size) size.addEventListener('change', e => {
-    $('commentText').focus();
-    document.execCommand('fontSize', false, e.target.value);
-  });
-}
-function exportComments() {
-  const p = processes.find(x => x.id === activeId) || processes[0];
-  const comments = getComments();
-  const payload = { processId: p.id, processTitle: p.title, exportedAt: new Date().toISOString(), comments };
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `comments-${p.id}.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-}
+
 
 function render() {
   const p = processes.find(x => x.id === activeId) || processes[0];
@@ -855,7 +703,6 @@ function render() {
   $('support').textContent = p.support;
   $('management').textContent = p.management;
   setupBpmnLink(p);
-  renderComments();
   renderTabs();
 }
 function filterTabs(q) {
@@ -880,12 +727,6 @@ $('downloadPngBtn').onclick = () => {
   document.body.appendChild(a);
   a.click();
   a.remove();
-};
-setupCommentFormatting();
-$('addCommentBtn').onclick = addComment;
-$('exportCommentsBtn').onclick = exportComments;
-$('clearCommentsBtn').onclick = () => {
-  if (confirm('Clear all comments saved in this browser for this subprocess map?')) { saveComments([]); renderComments(); }
 };
 function printWithMode(mode) {
   document.body.classList.remove('print-map-only', 'print-subprocess');
