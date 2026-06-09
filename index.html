@@ -793,7 +793,7 @@ function sendCommentToSheet(item) {
     })
   }).catch(() => {});
 }
-  function addComment() {
+function addComment() {
   const editor = $('commentText');
   const html = sanitizeCommentHtml(editor.innerHTML);
   const text = editor.textContent.trim();
