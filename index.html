@@ -779,7 +779,21 @@ function renderComments() {
     renderComments();
   });
 }
-function addComment() {
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzKYMbvQatYZM6rNx27cwdSmqbnUq4CTb13MJ2EK-2R5dvEjdYSzKsWXhz8suXyRADT/exec';
+function sendCommentToSheet(item) {
+  fetch(SHEETS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      reviewer: item.name || 'Anonymous',
+      processMap: item.processTitle,
+      comment: item.text,
+      version: 'v28'
+    })
+  }).catch(() => {});
+}
+  function addComment() {
   const editor = $('commentText');
   const html = sanitizeCommentHtml(editor.innerHTML);
   const text = editor.textContent.trim();
@@ -790,6 +804,7 @@ function addComment() {
   const comments = getComments();
   comments.unshift(item);
   saveComments(comments);
+  sendCommentToSheet(item);
   editor.innerHTML = '';
   renderComments();
 }
