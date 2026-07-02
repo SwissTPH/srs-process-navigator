@@ -3,7 +3,7 @@
 An interactive toolkit for exploring essential **Sample Registration System (SRS)** workflows through BPMN-based process maps.
 
 **Live toolkit:** <https://swisstph.github.io/srs-process-navigator/>  
-**Date:** June 2026  
+**Last update:** June 2026  
 **Version:** 1.0
 ---
 
