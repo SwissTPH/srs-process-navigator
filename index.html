@@ -362,8 +362,20 @@ h1 { margin:18px 0 16px; font-size:clamp(42px,6vw,76px); line-height:.96; letter
 .site-footer strong { color:var(--ink); }
 .site-footer a { color:#4b35b2; font-weight:400; text-decoration:none; }
 .site-footer a:hover { text-decoration:underline; }
-.site-footer .footer-license { max-width:720px; text-align:right; }
-@media (max-width: 860px) {
+.site-footer .footer-line {
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  text-align:center;
+}
+
+.site-footer .footer-separator {
+  color:#cbd5e1;
+}
+  @media (max-width: 860px) {
   .topbar-logo img { width:96px; }
   .topbar-logo { margin-left:0; margin-right:0; padding:5px 7px; }
   .site-footer .footer-inner { width:min(100% - 24px,1480px); }
@@ -630,8 +642,13 @@ h1 { margin:18px 0 16px; font-size:clamp(42px,6vw,76px); line-height:.96; letter
 </div>
 <footer class="site-footer">
 <div class="footer-inner">
-<div><strong>Developed by:</strong> <a href="https://www.swisstph.ch/en/research-groups/systems-innovation-research" rel="noopener" target="_blank">Systems Innovation Research Group</a>, Swiss Tropical and Public Health Institute.</div>
-<div class="footer-license"><strong>Licence:</strong> Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).</div>
+<div class="footer-line">
+  <span><strong>Developed by:</strong> <a href="https://www.swisstph.ch/en/research-groups/systems-innovation-research" rel="noopener" target="_blank">Systems Innovation Research Group</a>, Swiss Tropical and Public Health Institute.</span>
+  <span aria-hidden="true" class="footer-separator">|</span>
+  <span><strong>Funded by:</strong> Gates Foundation.</span>
+  <span aria-hidden="true" class="footer-separator">|</span>
+  <span><strong>Licence:</strong> Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).</span>
+</div>
 </div>
 </footer>
 <script>
